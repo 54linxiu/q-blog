@@ -26,8 +26,15 @@ public class UserAdminServiceImpl implements UserAdminService {
     }
 
     @Override
-    public int login(String account, String password) {
+    public UserAdmin login(String account, String password) {
 
-        return 0;
+        return null;
     }
+
+    @Override
+    public UserAdmin queryUser(String account) {
+        return userAdminMapper.queryUser(account);
+    }
+
+
 }

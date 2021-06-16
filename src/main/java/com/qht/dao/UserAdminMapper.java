@@ -23,4 +23,11 @@ public interface UserAdminMapper {
      */
     UserAdmin login(@Param("account") String userName,@Param("Password") String password);
 
+    /**
+     * 查询用户
+     * @param account
+     * @return
+     */
+    UserAdmin queryUser(@Param("account") String account);
+
 }

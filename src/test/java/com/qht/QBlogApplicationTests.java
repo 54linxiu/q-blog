@@ -13,7 +13,9 @@ class QBlogApplicationTests {
     UserAdminService userAdminService;
     @Test
     void contextLoads() {
-        userAdminService.createUser(new UserAdmin("2410480275", "林修", "123456", "", 0));
+//        userAdminService.createUser(new UserAdmin("2410480275", "林修", "123456", "", 0));
+        System.out.println(userAdminService.queryUser("2410480275"));
     }
+
 
 }

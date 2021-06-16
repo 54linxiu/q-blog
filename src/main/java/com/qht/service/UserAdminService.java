@@ -9,5 +9,7 @@ public interface UserAdminService {
 
     int createUser(UserAdmin userAdmin);
 
-    int login(String account,String password);
+    UserAdmin login(String account,String password);
+
+    UserAdmin queryUser(String account);
 }

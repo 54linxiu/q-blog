@@ -5,7 +5,7 @@
 <mapper namespace="com.qht.dao.UserAdminMapper">
 
     <sql id="Base_Column_List">
-        user_account,user_nickname,user_pwd,user_profile,locked
+        user_id,user_account,user_nickname,user_pwd,user_profile,locked
     </sql>
 
    <insert id="createUser" parameterType="UserAdmin">
@@ -15,5 +15,11 @@
 
     <select id="login" resultType="UserAdmin">
         select * from user_admin where user_account = #{account} and user_pwd = #{Password}
+    </select>
+
+    <select id="queryUser" resultType="UserAdmin">
+        select <include refid="Base_Column_List" />
+        from user_admin
+        where user_account = #{account}
     </select>
 </mapper>
