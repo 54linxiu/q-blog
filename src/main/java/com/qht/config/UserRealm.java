@@ -3,16 +3,16 @@ package com.qht.config;
 import com.qht.entity.UserAdmin;
 import com.qht.service.UserAdminService;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * shiro中自定义realm一般继承AuthorizingRealm，
@@ -33,6 +33,7 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        System.out.println("授权");
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
         //拿到当前登录的这个对象
@@ -41,6 +42,7 @@ public class UserRealm extends AuthorizingRealm {
 
         //设置当前用户的权限
         info.addStringPermission("perms:"+currentUser.getLocked());
+
         return info;
     }
 
@@ -52,8 +54,16 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        System.out.println("认证");
         UsernamePasswordToken userToken = (UsernamePasswordToken) token;
-        userToken.getUsername();
-        return null;
+
+        // 从数据库获取用户信息
+        UserAdmin user  = userAdminService.queryUser(userToken.getUsername());
+        if (user == null) {
+            System.out.println("用户不存在");
+            return null;
+        }
+        // 密码认证，shiro做
+        return new SimpleAuthenticationInfo(user,user.getUserPwd(),"");
     }
 }
