@@ -63,4 +63,14 @@ public class AdminController {
     public String unauthorized() {
         return "未经授权，无法访问此页面";
     }
+
+    @RequestMapping("/logout")
+    public String logout(){
+        //获取一个用户
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+
+
+        return "redirect:/admin/login";
+    }
 }

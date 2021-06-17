@@ -36,7 +36,7 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
 
         //设置登录的请求
-        shiroFilterFactoryBean.setLoginUrl("/admin/toLogin");
+        shiroFilterFactoryBean.setLoginUrl("/admin/login");
 
         //未授权页面
         shiroFilterFactoryBean.setUnauthorizedUrl("/admin/noauto");
