@@ -8,7 +8,7 @@ $(
             console.log(password)
             $.ajax({
                 url:'/admin/login',
-                type:'get',
+                type:'POST',
                 data:{'account':account,'password':password},
                 dataType:'json',
                 success:function(data){

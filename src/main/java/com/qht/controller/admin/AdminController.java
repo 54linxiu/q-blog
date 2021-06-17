@@ -28,8 +28,8 @@ public class AdminController {
         return "index";
     }
 
-    @GetMapping("/toLogin")
-    public String toLogin(){
+    @GetMapping("/login")
+    public String login(){
         return "admin/login";
     }
 
