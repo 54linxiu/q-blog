@@ -15,12 +15,13 @@ $(
                     if(data.flag==1){
                         location.href='/admin/index';
                     }else{
-                        alert(data.msg);
+                        // alert(data.msg);
+                        $('#msg').text(data.msg).css('color',"#f7acbc").css('opacity',1)
                     }
                 },
-                // error:function(){
-                //     console.log('请求出错！');
-                // }
+                error:function(){
+                    console.log('请求出错！');
+                }
             })
         })
     }

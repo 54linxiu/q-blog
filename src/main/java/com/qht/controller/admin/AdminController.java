@@ -22,17 +22,50 @@ import java.util.Map;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+    /**
+     * 转发 编辑博客页面
+     * @return
+     */
+    @GetMapping("/edit")
+    public String edit(){
+        return "admin/edit";
+    }
 
+    /**
+     * 转发 个人信息页面
+     * @return
+     */
+    @GetMapping("/userProfile")
+    public String userProfile(){
+        return "admin/user";
+    }
+
+    /**
+     * 返回首页
+     * @return
+     */
     @GetMapping("/index")
-    public String index(){
+    public String index(Model model){
+
         return "index";
     }
 
+    /**
+     * 转发登录页
+     * @return
+     */
     @GetMapping("/login")
     public String login(){
         return "admin/login";
     }
 
+    /**
+     * 登录
+     * @param username
+     * @param password
+     * @param model
+     * @return
+     */
     @RequestMapping("/login")
     @ResponseBody
     public String login(@RequestParam("account") String username, String password, Model model){
@@ -58,12 +91,20 @@ public class AdminController {
         return JSON.toJSONString(map);
     }
 
+    /**
+     * 未授权 提示
+     * @return
+     */
     @RequestMapping("/noauto")
     @ResponseBody
     public String unauthorized() {
         return "未经授权，无法访问此页面";
     }
 
+    /**
+     * 注销 没有对接此功能
+     * @return
+     */
     @RequestMapping("/logout")
     public String logout(){
         //获取一个用户

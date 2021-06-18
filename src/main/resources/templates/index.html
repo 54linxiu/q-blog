@@ -1,11 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>index</title>
+    <meta charset="utf-8"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png"/>
+    <link rel="icon" type="image/png" href="/img/favicon.png"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title>Material Dashboard by Creative Tim</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
+
+    <div th:replace="~{common/common::resources}"></div>
 </head>
+
 <body>
-index
-<a href="/admin/logout">退出</a>
+
+<div class="wrapper">
+    <!--侧边栏-->
+    <div th:replace="~{common/common::sidebar(active='index.html')}"></div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-transparent navbar-absolute">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Blog Dashboard</a>
+                </div>
+
+                <div th:replace="~{common/common::headright}"></div>
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!--博客数量-->
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="orange">
+                                <i class="fa fa-book"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>博客数量</h3>
+                                <h3 class="title">49/50<small>GB</small></h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="fa fa-database"></i> <a th:href="@{/admin/edit}">发布更多博客</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="green">
+                                <i class="fa fa-commenting"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3>收到的评论数量</h3>
+                                <h3 class="title">$34,245</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="fa fa-database"></i> <a th:href="@{#}">评论详细信息</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="red">
+                                <i class="fa fa-folder-o fa-3x"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="category">分类的数量</h3>
+                                <h3 class="title">75</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="fa fa-database"></i> <a th:href="@{#}">分类详细信息</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="blue">
+                                <i class="fa fa-tags fa-3x"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="category">标签总量</h3>
+                                <h3 class="title">+245</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="fa fa-database"></i> <a th:href="@{#}">标签详细信息</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+        <div th:replace="~{common/common::footer}"></div>
+    </div>
+</div>
+
 </body>
+
+<div th:replace="~{common/common::resources1}"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
+
 </html>
