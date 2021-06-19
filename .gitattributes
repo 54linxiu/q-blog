@@ -1,1 +1,1 @@
-*.java linguist-language=sass
+*.sass linguist-language=java
