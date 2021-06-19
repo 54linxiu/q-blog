@@ -1,8 +1,6 @@
 package com.qht.entity;
 
 
-import sun.plugin.util.UserProfile;
-
 public class UserAdmin {
     private int userId;
     private String userAccount;

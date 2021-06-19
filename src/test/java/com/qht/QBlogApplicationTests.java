@@ -15,18 +15,18 @@ class QBlogApplicationTests {
     UserAdminService userAdminService;
     @Test
     void contextLoads() {
-//        userAdminService.createUser(new UserAdmin("2410480275", "林修", "123456", "", 0));
+        userAdminService.createUser(new UserAdmin("666666", "ljx", "123456", "", 0));
 // 创建一个密码验证算法捕获器
-        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-        // 设置密码验证为MD5加密验证
-        hashedCredentialsMatcher.setHashAlgorithmName("MD5");
-        // 加密次数为 1 次
-        hashedCredentialsMatcher.setHashIterations(1);
-
-        SimpleHash simpleHash = new SimpleHash("MD5","123456");
-
-        System.out.println(simpleHash.toString());
-        System.out.println(userAdminService.queryUser("2410480275"));
+//        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+//        // 设置密码验证为MD5加密验证
+//        hashedCredentialsMatcher.setHashAlgorithmName("MD5");
+//        // 加密次数为 1 次
+//        hashedCredentialsMatcher.setHashIterations(1);
+//
+//        SimpleHash simpleHash = new SimpleHash("MD5","123456");
+//
+//        System.out.println(simpleHash.toString());
+//        System.out.println(userAdminService.queryUser("2410480275"));
     }
 
 
