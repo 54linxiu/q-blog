@@ -32,9 +32,9 @@ public class ShiroConfig {
 
         Map<String, String> filterMap = new LinkedHashMap<>();
         //授权，正常情况下，没有授权会跳转到未授权页面
-        filterMap.put("/admin/index", "perms[perms:0]");
-        filterMap.put("/admin/userProfile", "perms[perms:0]");
-        filterMap.put("/admin/edit", "perms[perms:0]");
+//        filterMap.put("/admin/index", "perms[perms:0]");
+//        filterMap.put("/admin/userProfile", "perms[perms:0]");
+//        filterMap.put("/admin/edit", "perms[perms:0]");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
 
         //设置登录的请求
