@@ -1,7 +1,9 @@
 package com.qht.controller.admin;
 
 import com.alibaba.fastjson.JSON;
+import com.qht.entity.UserAdmin;
 import com.qht.service.BlogPostService;
+import com.qht.service.UserAdminService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -10,8 +12,12 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,8 +31,20 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
 
+
+    private UserAdminService userAdminService;
+    private BlogPostService blogPostService;
     @Autowired
-    BlogPostService blogPostService;
+    public void setUserAdminService(UserAdminService userAdminService) {
+        this.userAdminService = userAdminService;
+    }
+    @Autowired
+    public void setBlogPostService(BlogPostService blogPostService) {
+        this.blogPostService = blogPostService;
+    }
+
+
+
     /**
      * 转发 编辑博客页面
      * @return
@@ -73,7 +91,7 @@ public class AdminController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public String login(@RequestParam("account") String username, String password, Model model){
+    public String login(@RequestParam("account") String username, String password, Model model, HttpSession session){
         //获取一个用户
         System.out.println(username);
         Subject subject = SecurityUtils.getSubject();
@@ -83,7 +101,8 @@ public class AdminController {
         try {
             subject.login(token);
             map.put("flag", 1);
-
+            UserAdmin userAdmin = userAdminService.queryUser(username);
+            session.setAttribute("uid", userAdmin);
         } catch (UnknownAccountException e) {//用户不存在
             map.put("flag", 0);
             map.put("msg","用户名错误");
@@ -93,6 +112,7 @@ public class AdminController {
             map.put("msg", "密码错误");
             e.printStackTrace();
         }
+
         return JSON.toJSONString(map);
     }
 

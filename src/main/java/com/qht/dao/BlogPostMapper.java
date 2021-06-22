@@ -1,5 +1,6 @@
 package com.qht.dao;
 
+import com.qht.entity.BlogPost;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +14,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BlogPostMapper {
     int queryCount();
+
+    int insertBlog(BlogPost blogPost);
 }

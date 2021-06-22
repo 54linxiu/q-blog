@@ -13,21 +13,22 @@ $(function () {
 });
 
 $('#blogSubmit').click(function (){
-
     $.ajax({
         type: "POST",                      //请求类型
         url: "/blogs/save",           //URL
-        data: {blogContent: contentEditor.getHTML()},   //传递的参数
-        dataType: "json",                 //返回的数据类型
+        data: {publishing_users: $('#uid').val()
+            ,blogTitle: $('#blogName').val()
+            ,blogContent: contentEditor.getHTML()},   //传递的参数
+        //dataType: "json",                 //返回的数据类型
         success: function (data) {          //data就是返回的json类型的数据
             if (data.mess == "true") {
                 alert("ok");
 
-            } else if (data.mess == "false") {
-                alert("对不起, " + obj.attr("username") + " 用户删除失败");
-            } else if (data.mess == "noex") {
-                alert("对不起,用户 " + obj.attr("username") + " 不存在");
-            }
+            } //else if (data.msg == "false") {
+            //     alert("对不起, " + obj.attr("username") + " 用户删除失败");
+            // } else if (data.msg == "noex") {
+            //     alert("对不起,用户 " + obj.attr("username") + " 不存在");
+            // }
         },
         error: function (data) {
             alert("删除失败");

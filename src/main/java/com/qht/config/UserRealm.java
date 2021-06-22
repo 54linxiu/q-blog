@@ -40,6 +40,8 @@ public class UserRealm extends AuthorizingRealm {
         Subject subject = SecurityUtils.getSubject();
         UserAdmin currentUser = (UserAdmin)subject.getPrincipal();//拿到user对象
 
+
+
         //设置当前用户的权限
         info.addStringPermission("perms:"+currentUser.getLocked());
 

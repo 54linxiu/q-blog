@@ -11,7 +11,7 @@ import java.util.Date;
 public class BlogPost {
     private int blogId;
     private Date releaseTime;
-    private int publishing_users;//发布账号
+    private int publishingUsers;//发布账号
     private String blogTitle;
     private String blogContent;
     private int replies;//回复数
@@ -19,10 +19,10 @@ public class BlogPost {
     public BlogPost() {
     }
 
-    public BlogPost(int blogId, Date releaseTime, int publishing_users, String blogTitle, String blogContent, int replies) {
+    public BlogPost(int blogId, Date releaseTime, int publishingUsers, String blogTitle, String blogContent, int replies) {
         this.blogId = blogId;
         this.releaseTime = releaseTime;
-        this.publishing_users = publishing_users;
+        this.publishingUsers = publishingUsers;
         this.blogTitle = blogTitle;
         this.blogContent = blogContent;
         this.replies = replies;
@@ -44,12 +44,12 @@ public class BlogPost {
         this.releaseTime = releaseTime;
     }
 
-    public int getPublishing_users() {
-        return publishing_users;
+    public int getPublishingUsers() {
+        return publishingUsers;
     }
 
-    public void setPublishing_users(int publishing_users) {
-        this.publishing_users = publishing_users;
+    public void setPublishingUsers(int publishingUsers) {
+        this.publishingUsers = publishingUsers;
     }
 
     public String getBlogTitle() {
@@ -81,7 +81,7 @@ public class BlogPost {
         return "BlogPost{" +
                 "blogId=" + blogId +
                 ", releaseTime=" + releaseTime +
-                ", publishing_users=" + publishing_users +
+                ", publishingUsers=" + publishingUsers +
                 ", blogTitle='" + blogTitle + '\'' +
                 ", blogContent='" + blogContent + '\'' +
                 ", replies=" + replies +

@@ -16,10 +16,13 @@ import org.springframework.util.DigestUtils;
 @Service
 public class UserAdminServiceImpl implements UserAdminService {
 
+
+    private UserAdminMapper userAdminMapper;
+
     @Autowired
-    UserAdminMapper userAdminMapper;
-
-
+    public void setUserAdminMapper(UserAdminMapper userAdminMapper) {
+        this.userAdminMapper = userAdminMapper;
+    }
 
     @Override
     public int createUser(UserAdmin userAdmin) {

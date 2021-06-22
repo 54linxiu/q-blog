@@ -1,6 +1,7 @@
 package com.qht.service.impl;
 
 import com.qht.dao.BlogPostMapper;
+import com.qht.entity.BlogPost;
 import com.qht.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +15,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class BlogPostServiceImp implements BlogPostService {
 
+
+    private BlogPostMapper blogPostMapper;
+
     @Autowired
-    BlogPostMapper blogPostMapper;
+    public void setBlogPostMapper(BlogPostMapper blogPostMapper) {
+        this.blogPostMapper = blogPostMapper;
+    }
 
     @Override
     public int queryCount() {
         return blogPostMapper.queryCount();
+    }
+
+    @Override
+    public int insertBlog(BlogPost blogPost) {
+        return blogPostMapper.insertBlog(blogPost);
     }
 }
