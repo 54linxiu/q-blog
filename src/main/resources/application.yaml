@@ -37,8 +37,10 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
   thymeleaf:
     cache: false
-
-
+  servlet:
+    multipart:
+      max-file-size: 80MB #限制单个文件的最大值
+      max-request-size: 80MB #限制上传的多个文件的总大小
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.qht.entity

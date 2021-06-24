@@ -11,30 +11,35 @@ $(function () {
         syncScrolling: "single",
         path: "/blog/lib/",//依赖的包路径
         saveHTMLToTextarea: true,
+        imageUpload    : true,
+        imageFormats   : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+        imageUploadURL : "/blogs/saveImg",
 
     });
 
-    conditionNumber = 0;
 
     $('#blogSubmit').click(function () {
         uid = $('#uid').val();
         bTitle = $('#blogName').val();
         content = contentEditor.getHTML()
         if (uid == null || uid.length === 0) {
-            return alert("请登录");
-            conditionNumber++;
+             alert("请登录");
+            return
         }
+
         if (bTitle == null || bTitle.length === 0) {
-            return alert("必须输入标题" + $('#blogName').val())
-            conditionNumber++;
+            swal("请输入标题", {
+                icon: "error",
+            });
+            return
         }
         if (content == null || content.length === 0) {
-            return alert("必须输入博文")
-            conditionNumber++;
+            swal("请输入博文", {
+                icon: "error",
+            });
+            return
         }
-        if (conditionNumber === 0) {
-            Upload()
-        }
+        Upload()
     });
 
     function Upload() {
@@ -50,12 +55,7 @@ $(function () {
             success: function (data) {          //data就是返回的json类型的数据
                 if (data.msg == "true") {
                     console.log("ok")
-
-                } //else if (data.msg == "false") {
-                //     alert("对不起, " + obj.attr("username") + " 用户删除失败");
-                // } else if (data.msg == "noex") {
-                //     alert("对不起,用户 " + obj.attr("username") + " 不存在");
-                // }
+                }
             },
             error: function (data) {
                 alert("删除失败");
