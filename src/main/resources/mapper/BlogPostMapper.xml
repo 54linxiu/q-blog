@@ -17,4 +17,11 @@
         select * from blog_post
     </select>
 
+    <select id="queryOne" resultType="BlogPost">
+        select * from blog_post where blog_id = #{id}
+    </select>
+
+    <update id="updateBlog">
+        update blog_post set blog_title = #{blogTitle}, blog_content = #{blogContent} where blog_id = #{blogId}
+    </update>
 </mapper>

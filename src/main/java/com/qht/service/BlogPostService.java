@@ -28,4 +28,18 @@ public interface BlogPostService {
      * @return
      */
     List<BlogPost> select();
+
+    /**
+     * 查询一条博客
+     * @param id
+     * @return
+     */
+    BlogPost queryOne(String id);
+
+    /**
+     * 更新博客
+     * @param blogPost
+     * @return
+     */
+    int updateBlog(BlogPost blogPost);
 }

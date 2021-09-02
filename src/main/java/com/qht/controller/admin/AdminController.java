@@ -49,7 +49,7 @@ public class AdminController {
      */
     @GetMapping("/manage")
     public String toManage(Model model){
-        System.out.println(blogPostService.select());
+//        blogPostService.select()
         model.addAttribute("bloginfo", blogPostService.select());
         return "admin/administration";
     }
@@ -59,7 +59,13 @@ public class AdminController {
      * @return
      */
     @GetMapping("/edit")
-    public String edit(){
+    public String edit(HttpSession session){
+        session.removeAttribute("blog");
+        return "admin/edit";
+    }
+
+    @GetMapping("/modify")
+    public String modify(){
         return "admin/edit";
     }
 

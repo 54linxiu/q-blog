@@ -36,7 +36,9 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">发布博客</a>
+						<!--预留修改页面-->
+						<a class="navbar-brand" id="pTitle" href="#" th:if="${session.blog} == null">发布博客</a>
+						<a class="navbar-brand" id="pTitle" href="#" th:if="${session.blog} != null">修改博客</a>
 					</div>
 					<div th:replace="~{common/common::headright}"></div>
 				</div>
@@ -48,11 +50,18 @@
 	                <div class="row" >
 						<div class="col-md-12">
 							<input type="hidden" id="uid" name="uid" th:value="${session.uid.getUserId()}">
-							<input type="hidden" id="blogId" name="blogId">
+
+							<input type="hidden" id="blogId" name="blogId" th:if="${session.blog}" th:value="${session.blog.getBlogId()}">
+							<!--预留修改页面-->
 							<input type="text" class="form-control col-sm-6" id="blogName" name="blogName"
 								   placeholder="*请输入文章标题(必填)"
 								   style="margin: 0" value=""
-								   required="true">
+								   required="true" th:if="${session.blog} == null">
+							<!--预留修改页面-->
+							<input type="text" class="form-control col-sm-6" id="blogName" name="blogName"
+								   placeholder="*请输入文章标题(必填)"
+								   style="margin: 0" th:value="${session.blog.getBlogTitle()}"
+								   required="true" th:if="${session.blog} != null">
 						</div>
 						<div class="col-md-12">
 							<div id="q-content">

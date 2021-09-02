@@ -38,27 +38,30 @@
                 </div>
                 <div th:replace="~{common/common::headright}"></div>
             </div>
-            <div class="container">
-                <div class="row text-center">
-                        <div class="col-md-3">博文标题</div>
-                        <div class="col-md-3">发布日期</div>
-                        <div class="col-md-3">博客内容</div>
-                        <div class="col-md-3">回复数量</div>
 
-                </div>
-            </div>
+            <table class="container table table-bordered">
 
-            <div class="container">
-                <div class="row text-center" th:each="blog : ${bloginfo}">
-                    <div class="col-md-3" th:text="${blog.getBlogTitle()}"></div>
-                    <div class="col-md-3"  th:text="${#dates.format(blog.getReleaseTime(), 'yyyy-MM-dd')}"></div>
-                    <div class="col-md-3" th:text="${blog.getBlogContent()}"></div>
-                    <div class="col-md-3" th:text="${blog.getReplies()}"></div>
-                </div>
-            </div>
+                <tr class="row text-center">
+                    <td class="col-md-1">博文标题</td>
+                    <td class="col-md-3">发布日期</td>
+                    <td class="col-md-5">博客内容</td>
+                    <td class="col-md-1">回复数量</td>
+                    <td class="col-md-1">编辑操作</td>
+                    <td class="col-md-1">删除操作</td>
+                </tr>
+
+                <tr class="row text-center" th:each="blog : ${bloginfo}">
+                    <td class="col-md-1" th:text="${blog.getBlogTitle()}"></td>
+                    <td class="col-md-3" th:text="${#dates.format(blog.getReleaseTime(), 'yyyy-MM-dd')}"></td>
+                    <td class="col-md-5" th:text="${blog.getBlogContent()}"></td>
+                    <td class="col-md-1" th:text="${blog.getReplies()}"></td>
+                    <td class="col-md-1"><a class="btn btn-info" th:href="@{'/blogs/edit?id='+${blog.getBlogId()}}">编辑</a></td>
+                    <td class="col-md-1"><a class="btn btn-danger" th:href="@{'/blogs/del?id='+${blog.getBlogId()}}">删除</a></td>
+                </tr>
+            </table>
+
             <div th:replace="~{common/common::footer}"></div>
         </nav>
-
 
 
     </div>

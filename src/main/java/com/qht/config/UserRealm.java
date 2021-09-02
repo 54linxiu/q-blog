@@ -33,7 +33,7 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        System.out.println("授权");
+//        System.out.println("授权");
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
         //拿到当前登录的这个对象
@@ -56,7 +56,7 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        System.out.println("认证");
+//        System.out.println("认证");
         UsernamePasswordToken userToken = (UsernamePasswordToken) token;
 
         // 从数据库获取用户信息

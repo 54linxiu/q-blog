@@ -40,5 +40,15 @@ public class BlogPostServiceImp implements BlogPostService {
         return blogPostMapper.select();
     }
 
+    @Override
+    public BlogPost queryOne(String id) {
+        return blogPostMapper.queryOne(id);
+    }
+
+    @Override
+    public int updateBlog(BlogPost blogPost) {
+        return blogPostMapper.updateBlog(blogPost);
+    }
+
 
 }

@@ -15,9 +15,35 @@ import java.util.List;
 @Mapper
 @Repository
 public interface BlogPostMapper {
+    /**
+     * 查询博文总数
+     * @return
+     */
     int queryCount();
 
+    /**
+     * 插入博客
+     * @param blogPost
+     * @return
+     */
     int insertBlog(BlogPost blogPost);
 
+    /**
+     * 查询博客
+     * @return
+     */
     List<BlogPost> select();
+
+    /**
+     * 查询一条
+     * @return
+     */
+    BlogPost queryOne(String id);
+
+    /**
+     * 更新博客
+     * @param blogPost
+     * @return
+     */
+    int updateBlog(BlogPost blogPost);
 }
