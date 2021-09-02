@@ -6,6 +6,8 @@ import com.qht.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ClassName BlogPostServiceImp
  * @Author q
@@ -32,4 +34,11 @@ public class BlogPostServiceImp implements BlogPostService {
     public int insertBlog(BlogPost blogPost) {
         return blogPostMapper.insertBlog(blogPost);
     }
+
+    @Override
+    public List<BlogPost> select() {
+        return blogPostMapper.select();
+    }
+
+
 }

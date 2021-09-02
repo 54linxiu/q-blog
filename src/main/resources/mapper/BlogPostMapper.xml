@@ -13,4 +13,8 @@
         VALUES(NOW(),#{publishingUsers},#{blogTitle},#{blogContent})
     </insert>
 
+    <select id="select" resultType="BlogPost">
+        select * from blog_post
+    </select>
+
 </mapper>

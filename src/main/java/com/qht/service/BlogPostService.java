@@ -2,6 +2,8 @@ package com.qht.service;
 
 import com.qht.entity.BlogPost;
 
+import java.util.List;
+
 /**
  * @ClassName BlogPostService
  * @Author q
@@ -20,4 +22,10 @@ public interface BlogPostService {
      * @return
      */
     int insertBlog(BlogPost blogPost);
+
+    /**
+     * 博客查询
+     * @return
+     */
+    List<BlogPost> select();
 }

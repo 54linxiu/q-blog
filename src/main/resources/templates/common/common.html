@@ -30,8 +30,8 @@
                     <p>在线发布博客</p>
                 </a>
             </li>
-            <li>
-                <a href="">
+            <li th:class="${active=='administration.html'?'active':''}">
+                <a th:href="@{/admin/manage}">
                     <i class="fa fa-archive fa-3x"></i>
                     <p>博客管理</p>
                 </a>

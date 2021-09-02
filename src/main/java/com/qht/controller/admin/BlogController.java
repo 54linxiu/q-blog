@@ -76,7 +76,7 @@ public class BlogController {
             //此处不要写 字符串的"1"，只是写为数字不要带引号*/
             jsonObject.put("success", 1 );
             jsonObject.put("message", "上传成功");
-            jsonObject.put("url", "http://localhost:10515/img/"+attach.getOriginalFilename());
+            jsonObject.put("url", "/img/"+attach.getOriginalFilename());
             System.out.println("/img/"+attach.getOriginalFilename());
         } catch (Exception e) {
             jsonObject.put("success", "0");
@@ -86,4 +86,6 @@ public class BlogController {
 
         return jsonObject;
     }
+
+
 }

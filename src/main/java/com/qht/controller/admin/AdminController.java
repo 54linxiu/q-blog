@@ -43,7 +43,16 @@ public class AdminController {
         this.blogPostService = blogPostService;
     }
 
-
+    /**
+     * 转发 管理博客页面
+     * @return
+     */
+    @GetMapping("/manage")
+    public String toManage(Model model){
+        System.out.println(blogPostService.select());
+        model.addAttribute("bloginfo", blogPostService.select());
+        return "admin/administration";
+    }
 
     /**
      * 转发 编辑博客页面

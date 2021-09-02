@@ -4,6 +4,8 @@ import com.qht.entity.BlogPost;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @ClassName BlogPostMapper.xml
  * @Author q
@@ -16,4 +18,6 @@ public interface BlogPostMapper {
     int queryCount();
 
     int insertBlog(BlogPost blogPost);
+
+    List<BlogPost> select();
 }

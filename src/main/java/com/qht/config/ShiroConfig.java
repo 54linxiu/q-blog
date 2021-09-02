@@ -35,6 +35,7 @@ public class ShiroConfig {
         filterMap.put("/admin/index", "perms[perms:0]");
         filterMap.put("/admin/userProfile", "perms[perms:0]");
         filterMap.put("/admin/edit", "perms[perms:0]");
+        filterMap.put("/admin/manage", "perms[perms:0]");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
 
         //设置登录的请求
