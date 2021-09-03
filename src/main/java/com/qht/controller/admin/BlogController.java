@@ -79,7 +79,7 @@ public class BlogController {
         Map<String,String> map = new HashMap<>();
         map.put("msg", "true");
         String str = JSON.toJSONString(map);
-        return str;
+          return str;
     }
 
     /**
