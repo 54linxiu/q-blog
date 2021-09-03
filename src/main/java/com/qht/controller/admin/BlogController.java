@@ -36,7 +36,12 @@ public class BlogController {
         this.blogPostService = blogPostService;
     }
 
-
+    /**
+     * 修改博客
+     * @param id
+     * @param session
+     * @return
+     */
     @GetMapping("/edit")
     public String editBlog(String id, HttpSession session){
         BlogPost blog = blogPostService.queryOne(id);
@@ -46,10 +51,26 @@ public class BlogController {
         return "redirect:/admin/modify";
     }
 
-
-    @GetMapping("/del")
-    public String delBlog(){
-        return "";
+    /**
+     * 删除博客
+     * @param id
+     * @return
+     */
+    @PostMapping("/del")
+    @ResponseBody
+    public String delBlog(String id){
+        System.out.println(id);
+        int status = blogPostService.deleteBlog(id);
+        Map<String,String> map = new HashMap<>();
+        String msg = "";
+        if(status > 0){
+            map.put("msg", "true");
+            msg   = JSON.toJSONString(map);
+        }else if(status == 0){
+            map.put("msg", "false");
+            msg   = JSON.toJSONString(map);
+        }
+        return msg;
     }
 
     /**
@@ -72,14 +93,15 @@ public class BlogController {
 
     @PostMapping("/modify")
     @ResponseBody
-    public String modifyBlog(BlogPost blogPost, Model model){
+    public String modifyBlog(BlogPost blogPost, Model model,HttpSession session){
         System.out.println(blogPost);
         blogPostService.updateBlog(blogPost);
 
         Map<String,String> map = new HashMap<>();
         map.put("msg", "true");
         String str = JSON.toJSONString(map);
-          return str;
+        session.removeAttribute("blog");
+        return str;
     }
 
     /**

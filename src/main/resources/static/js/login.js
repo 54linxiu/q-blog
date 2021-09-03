@@ -4,8 +4,8 @@ $(
             let account = $('#account').val()
             let password = $('#password').val()
 
-            console.log(account)
-            console.log(password)
+            // console.log(account)
+            // console.log(password)
             $.ajax({
                 url:'/admin/login',
                 type:'POST',

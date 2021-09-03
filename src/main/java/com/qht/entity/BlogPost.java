@@ -13,18 +13,20 @@ public class BlogPost {
     private Date releaseTime;
     private int publishingUsers;//发布账号
     private String blogTitle;
-    private String blogContent;
+    private String blogContentHtml;
+    private String blogContentMd;
     private int replies;//回复数
 
     public BlogPost() {
     }
 
-    public BlogPost(int blogId, Date releaseTime, int publishingUsers, String blogTitle, String blogContent, int replies) {
+    public BlogPost(int blogId, Date releaseTime, int publishingUsers, String blogTitle, String blogContentHtml, String blogContentMd, int replies) {
         this.blogId = blogId;
         this.releaseTime = releaseTime;
         this.publishingUsers = publishingUsers;
         this.blogTitle = blogTitle;
-        this.blogContent = blogContent;
+        this.blogContentHtml = blogContentHtml;
+        this.blogContentMd = blogContentMd;
         this.replies = replies;
     }
 
@@ -60,12 +62,20 @@ public class BlogPost {
         this.blogTitle = blogTitle;
     }
 
-    public String getBlogContent() {
-        return blogContent;
+    public String getBlogContentHtml() {
+        return blogContentHtml;
     }
 
-    public void setBlogContent(String blogContent) {
-        this.blogContent = blogContent;
+    public void setBlogContentHtml(String blogContentHtml) {
+        this.blogContentHtml = blogContentHtml;
+    }
+
+    public String getBlogContentMd() {
+        return blogContentMd;
+    }
+
+    public void setBlogContentMd(String blogContentMd) {
+        this.blogContentMd = blogContentMd;
     }
 
     public int getReplies() {
@@ -83,7 +93,8 @@ public class BlogPost {
                 ", releaseTime=" + releaseTime +
                 ", publishingUsers=" + publishingUsers +
                 ", blogTitle='" + blogTitle + '\'' +
-                ", blogContent='" + blogContent + '\'' +
+                ", blogContentHtml='" + blogContentHtml + '\'' +
+                ", blogContentMd='" + blogContentMd + '\'' +
                 ", replies=" + replies +
                 '}';
     }

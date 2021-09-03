@@ -9,8 +9,8 @@
     </select>
 
     <insert id="insertBlog" parameterType="BlogPost">
-        INSERT INTO blog_post(release_time,publishing_users,blog_title,blog_content)
-        VALUES(NOW(),#{publishingUsers},#{blogTitle},#{blogContent})
+        INSERT INTO blog_post(release_time,publishing_users,blog_title,blog_content_html,blog_content_md)
+        VALUES(NOW(),#{publishingUsers},#{blogTitle},#{blogContentHtml},#{blogContentMd})
     </insert>
 
     <select id="select" resultType="BlogPost">
@@ -22,6 +22,10 @@
     </select>
 
     <update id="updateBlog">
-        update blog_post set blog_title = #{blogTitle}, blog_content = #{blogContent} where blog_id = #{blogId}
+        update blog_post set blog_title = #{blogTitle}, blog_content_Html = #{blogContentHtml}, blog_content_md = #{blogContentMd} where blog_id = #{blogId}
     </update>
+
+    <delete id="deleteBlog">
+        delete from blog_post where blog_id = #{id}
+    </delete>
 </mapper>

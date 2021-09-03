@@ -50,7 +50,7 @@ public class AdminController {
     @GetMapping("/manage")
     public String toManage(Model model){
 //        blogPostService.select()
-        model.addAttribute("bloginfo", blogPostService.select());
+        model.addAttribute("blogInfo", blogPostService.select());
         return "admin/administration";
     }
 
@@ -108,7 +108,7 @@ public class AdminController {
     @ResponseBody
     public String login(@RequestParam("account") String username, String password, Model model, HttpSession session){
         //获取一个用户
-        System.out.println(username);
+//        System.out.println(username);
         Subject subject = SecurityUtils.getSubject();
         //封装用户的登陆数据
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);

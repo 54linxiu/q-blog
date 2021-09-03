@@ -50,5 +50,10 @@ public class BlogPostServiceImp implements BlogPostService {
         return blogPostMapper.updateBlog(blogPost);
     }
 
+    @Override
+    public int deleteBlog(String id) {
+        return blogPostMapper.deleteBlog(id);
+    }
+
 
 }

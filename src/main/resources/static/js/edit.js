@@ -43,14 +43,15 @@ $(function () {
     });
 
     function Upload() {
-        if ($("pTitle").val() == "发布博客"){
+        if ($("#pTitle").text() == "发布博客"){
             $.ajax({
                 type: "POST",                      //请求类型
                 url: "/blogs/save",           //URL
                 data: {
-                    publishing_users: uid
+                    publishingUsers: uid
                     , blogTitle: bTitle
-                    , blogContent: contentEditor.getHTML()
+                    , blogContentHtml: contentEditor.getHTML()
+                    , blogContentMd: contentEditor.getMarkdown()
                 },   //传递的参数
                 dataType: "json",                 //返回的数据类型
                 success: function (data) {          //data就是返回的json类型的数据
@@ -67,28 +68,30 @@ $(function () {
                 }
             })
         }else{
-            alert($("blogId").val())
+
             $.ajax({
                 type: "POST",                      //请求类型
                 url: "/blogs/modify",           //URL
                 data: {
-                    publishing_users: uid
-                    , blogId : $("#blogId").val()
+                    blogId : $("#blogId").val(),
+                    publishingUsers: uid
                     , blogTitle: bTitle
-                    , blogContent: contentEditor.getHTML()
+                    , blogContentHtml: contentEditor.getHTML()
+                    , blogContentMd: contentEditor.getMarkdown()
                 },   //传递的参数
                 dataType: "json",                 //返回的数据类型
                 success: function (data) {          //data就是返回的json类型的数据
                     if (data.msg == "true") {
                         console.log("ok");
-                        swal("提交成功", "请确定", "success");
+                        swal("修改成功", "请确定", "success");
                         //上传成功 清空标题 博文
                         console.log($("#blogName").val(""))
                         contentEditor.clear()
+                        $("#pTitle").text("发布博客")
                     }
                 },
                 error: function (data) {
-                    swal("提交失败", "请确定", "error");
+                    swal("修改失败", "请确定", "error");
                 }
             })
         }

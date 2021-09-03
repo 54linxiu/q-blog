@@ -42,4 +42,11 @@ public interface BlogPostService {
      * @return
      */
     int updateBlog(BlogPost blogPost);
+
+    /**
+     * 删除博客
+     * @param id
+     * @return
+     */
+    int deleteBlog(String id);
 }
