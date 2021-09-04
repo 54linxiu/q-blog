@@ -15,18 +15,22 @@ public class BlogPost {
     private String blogTitle;
     private String blogContentHtml;
     private String blogContentMd;
+    private String blogSortName;
+    private String blogTagsName;
     private int replies;//回复数
 
     public BlogPost() {
     }
 
-    public BlogPost(int blogId, Date releaseTime, int publishingUsers, String blogTitle, String blogContentHtml, String blogContentMd, int replies) {
+    public BlogPost(int blogId, Date releaseTime, int publishingUsers, String blogTitle, String blogContentHtml, String blogContentMd, String blogSortName, String blogTagsName, int replies) {
         this.blogId = blogId;
         this.releaseTime = releaseTime;
         this.publishingUsers = publishingUsers;
         this.blogTitle = blogTitle;
         this.blogContentHtml = blogContentHtml;
         this.blogContentMd = blogContentMd;
+        this.blogSortName = blogSortName;
+        this.blogTagsName = blogTagsName;
         this.replies = replies;
     }
 
@@ -78,6 +82,22 @@ public class BlogPost {
         this.blogContentMd = blogContentMd;
     }
 
+    public String getBlogSortName() {
+        return blogSortName;
+    }
+
+    public void setBlogSortName(String blogSortName) {
+        this.blogSortName = blogSortName;
+    }
+
+    public String getBlogTagsName() {
+        return blogTagsName;
+    }
+
+    public void setBlogTagsName(String blogTagsName) {
+        this.blogTagsName = blogTagsName;
+    }
+
     public int getReplies() {
         return replies;
     }
@@ -95,6 +115,8 @@ public class BlogPost {
                 ", blogTitle='" + blogTitle + '\'' +
                 ", blogContentHtml='" + blogContentHtml + '\'' +
                 ", blogContentMd='" + blogContentMd + '\'' +
+                ", blogSortName='" + blogSortName + '\'' +
+                ", blogTagsName='" + blogTagsName + '\'' +
                 ", replies=" + replies +
                 '}';
     }

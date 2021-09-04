@@ -3,7 +3,9 @@ package com.qht.controller.admin;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.qht.entity.BlogPost;
+import com.qht.entity.BlogSort;
 import com.qht.service.BlogPostService;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,7 +40,7 @@ public class BlogController {
     }
 
     /**
-     * 修改博客
+     * 修改博客 重定向
      * @param id
      * @param session
      * @return
@@ -45,9 +48,11 @@ public class BlogController {
     @GetMapping("/edit")
     public String editBlog(String id, HttpSession session){
         BlogPost blog = blogPostService.queryOne(id);
+        List<BlogSort> sortAll = blogPostService.queryAllSort();
         System.out.println(blog);
+        System.out.println(sortAll);
         session.setAttribute("blog", blog);
-
+        session.setAttribute("sortAll", sortAll);
         return "redirect:/admin/modify";
     }
 
@@ -83,6 +88,15 @@ public class BlogController {
     @ResponseBody
     public String saveBlog(BlogPost blogPost, Model model){
         System.out.println(blogPost);
+        String sortName = blogPost.getBlogSortName();
+        //判断是否有分类标签 没有文字符号限制
+        if(!"".equals(sortName) && sortName.length() > 0){
+            int count = blogPostService.querySort(sortName);
+            System.out.println(count);
+            if(count == 0){
+                blogPostService.insertSort(sortName);
+            }
+        }
         blogPostService.insertBlog(blogPost);
 
         Map<String,String> map = new HashMap<>();
@@ -91,6 +105,13 @@ public class BlogController {
         return str;
     }
 
+    /**
+     * 博客修改
+     * @param blogPost
+     * @param model
+     * @param session
+     * @return
+     */
     @PostMapping("/modify")
     @ResponseBody
     public String modifyBlog(BlogPost blogPost, Model model,HttpSession session){
@@ -100,7 +121,9 @@ public class BlogController {
         Map<String,String> map = new HashMap<>();
         map.put("msg", "true");
         String str = JSON.toJSONString(map);
+        //修改 需要清除之前的博客信息
         session.removeAttribute("blog");
+        session.removeAttribute("sortAll");
         return str;
     }
 

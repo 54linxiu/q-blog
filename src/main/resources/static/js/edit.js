@@ -4,6 +4,8 @@ let conditionNumber = 0;
 let uid;
 let bTitle;
 let content;
+let sort;
+let tags;
 $(function () {
     contentEditor = editormd("q-content", {
         width: "100%",
@@ -22,6 +24,8 @@ $(function () {
         uid = $('#uid').val();
         bTitle = $('#blogName').val();
         content = contentEditor.getHTML()
+        sort = $('#blogSortName').val()
+        tags = $('#blogTagsName').val();
         if (uid == null || uid.length === 0) {
              alert("请登录");
             return
@@ -52,6 +56,8 @@ $(function () {
                     , blogTitle: bTitle
                     , blogContentHtml: contentEditor.getHTML()
                     , blogContentMd: contentEditor.getMarkdown()
+                    , blogSortName: sort
+                    , blogTagsName: tags
                 },   //传递的参数
                 dataType: "json",                 //返回的数据类型
                 success: function (data) {          //data就是返回的json类型的数据
@@ -59,7 +65,7 @@ $(function () {
                         console.log("ok");
                         swal("提交成功", "请确定", "success");
                         //上传成功 清空标题 博文
-                        console.log($("#blogName").val(""))
+                        console.log(sort + tags)
                         contentEditor.clear()
                     }
                 },
@@ -78,6 +84,8 @@ $(function () {
                     , blogTitle: bTitle
                     , blogContentHtml: contentEditor.getHTML()
                     , blogContentMd: contentEditor.getMarkdown()
+                    , blogSortName: sort
+                    , blogTagsName: tags
                 },   //传递的参数
                 dataType: "json",                 //返回的数据类型
                 success: function (data) {          //data就是返回的json类型的数据
@@ -96,6 +104,16 @@ $(function () {
             })
         }
     };
+
+
+    $('#blogSortName').editableSelect({
+        bg_iframe: true,
+
+        case_sensitive: false,
+        items_then_scroll: 10 ,
+        isFilter:false
+    });
+
 });
 
 

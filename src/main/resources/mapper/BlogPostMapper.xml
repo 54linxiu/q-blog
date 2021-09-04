@@ -9,8 +9,8 @@
     </select>
 
     <insert id="insertBlog" parameterType="BlogPost">
-        INSERT INTO blog_post(release_time,publishing_users,blog_title,blog_content_html,blog_content_md)
-        VALUES(NOW(),#{publishingUsers},#{blogTitle},#{blogContentHtml},#{blogContentMd})
+        INSERT INTO blog_post(release_time,publishing_users,blog_title,blog_content_html,blog_content_md,blog_sort_name,blog_tags_name)
+        VALUES(NOW(),#{publishingUsers},#{blogTitle},#{blogContentHtml},#{blogContentMd},#{blogSortName},#{blogTagsName})
     </insert>
 
     <select id="select" resultType="BlogPost">
@@ -22,10 +22,23 @@
     </select>
 
     <update id="updateBlog">
-        update blog_post set blog_title = #{blogTitle}, blog_content_Html = #{blogContentHtml}, blog_content_md = #{blogContentMd} where blog_id = #{blogId}
+        update blog_post set blog_title = #{blogTitle}, blog_content_Html = #{blogContentHtml},
+        blog_content_md = #{blogContentMd},blog_sort_name = #{blogSortName} where blog_id = #{blogId}
     </update>
 
     <delete id="deleteBlog">
         delete from blog_post where blog_id = #{id}
     </delete>
+
+    <select id="querySort" resultType="_int" parameterType="String">
+        select count(1) from blog_sort where sort_name = #{sortName}
+    </select>
+
+    <insert id="insertSort" parameterType="String">
+        insert into blog_sort(sort_name) values (#{sortName})
+    </insert>
+
+    <select id="queryAllSort" resultType="BlogSort">
+        select * from blog_sort
+    </select>
 </mapper>

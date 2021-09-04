@@ -1,6 +1,7 @@
 package com.qht.service;
 
 import com.qht.entity.BlogPost;
+import com.qht.entity.BlogSort;
 
 import java.util.List;
 
@@ -49,4 +50,24 @@ public interface BlogPostService {
      * @return
      */
     int deleteBlog(String id);
+
+    /**
+     * 查询分类标签有没有
+     * @param sortName
+     * @return
+     */
+    int querySort(String sortName);
+
+    /**
+     * 插入分类标签
+     * @param sortName
+     * @return
+     */
+    int insertSort(String sortName);
+
+    /**
+     * 查询所有分类标签
+     * @return
+     */
+    List<BlogSort> queryAllSort();
 }

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+    <title>标签管理</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/blog/css/editormd.min.css}">
+    <div th:replace="~{common/common::resources}"></div>
+
+</head>
+<body>
+<div class="wrapper">
+    <!--侧边栏-->
+    <div th:replace="~{common/common::sidebar(active='tags.html')}"></div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-transparent navbar-absolute">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--预留修改页面-->
+                    <a class="navbar-brand" href="#" th:if="${session.blog} == null">标签管理</a>
+
+                </div>
+                <div th:replace="~{common/common::headright}"></div>
+            </div>
+        </nav>
+
+        <div class="content" style="margin: 3vh 15px">
+
+            <div class="container-fluid">
+
+
+
+            </div>
+        </div>
+
+        <div th:replace="~{common/common::footer}"></div>
+
+    </div>
+</div>
+</body>
+</html>

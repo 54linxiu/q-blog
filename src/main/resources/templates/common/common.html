@@ -42,14 +42,14 @@
                     <p>评论管理</p>
                 </a>
             </li>
-            <li>
-                <a href="">
+            <li th:class="${active=='sort.html'?'active':''}">
+                <a th:href="@{/admin/sort}">
                     <i class="fa fa-briefcase fa-3x"></i>
                     <p>分类管理</p>
                 </a>
             </li>
-            <li>
-                <a href="">
+            <li th:class="${active=='tags.html'?'active':''}">
+                <a th:href="@{/admin/tags}">
                     <i class="fa fa-tags fa-3x"></i>
                     <p>标签管理</p>
                 </a>

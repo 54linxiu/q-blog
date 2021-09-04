@@ -1,6 +1,7 @@
 package com.qht.dao;
 
 import com.qht.entity.BlogPost;
+import com.qht.entity.BlogSort;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -17,12 +18,14 @@ import java.util.List;
 public interface BlogPostMapper {
     /**
      * 查询博文总数
+     *
      * @return
      */
     int queryCount();
 
     /**
      * 插入博客
+     *
      * @param blogPost
      * @return
      */
@@ -30,18 +33,21 @@ public interface BlogPostMapper {
 
     /**
      * 查询博客
+     *
      * @return
      */
     List<BlogPost> select();
 
     /**
      * 查询一条
+     *
      * @return
      */
     BlogPost queryOne(String id);
 
     /**
      * 更新博客
+     *
      * @param blogPost
      * @return
      */
@@ -49,8 +55,32 @@ public interface BlogPostMapper {
 
     /**
      * 删除博客
+     *
      * @param id
      * @return
      */
     int deleteBlog(String id);
+
+    /**
+     * 查询标签有没有
+     *
+     * @param sortName
+     * @return
+     */
+    int querySort(String sortName);
+
+    /**
+     * 插入分类标签
+     *
+     * @param sortName
+     * @return
+     */
+    int insertSort(String sortName);
+
+    /**
+     * 查询所有分类标签
+     *
+     * @return
+     */
+    List<BlogSort> queryAllSort();
 }

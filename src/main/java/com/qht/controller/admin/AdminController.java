@@ -1,6 +1,7 @@
 package com.qht.controller.admin;
 
 import com.alibaba.fastjson.JSON;
+import com.qht.entity.BlogSort;
 import com.qht.entity.UserAdmin;
 import com.qht.service.BlogPostService;
 import com.qht.service.UserAdminService;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,6 +46,19 @@ public class AdminController {
     }
 
     /**
+     * 转发 标签管理页面
+     * @return
+     */
+    @GetMapping("sort")
+    public String toSort(){
+        return "admin/sort";
+    }
+    @GetMapping("tags")
+    public String toTags(){
+        return "admin/tags";
+    }
+
+    /**
      * 转发 管理博客页面
      * @return
      */
@@ -60,7 +75,10 @@ public class AdminController {
      */
     @GetMapping("/edit")
     public String edit(HttpSession session){
+        //进入博客管理页面 之前可能修改博客信息遗留 需要清除
         session.removeAttribute("blog");
+        session.setAttribute("sortAll",blogPostService.queryAllSort());
+
         return "admin/edit";
     }
 

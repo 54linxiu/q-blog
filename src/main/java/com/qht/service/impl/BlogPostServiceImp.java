@@ -2,6 +2,7 @@ package com.qht.service.impl;
 
 import com.qht.dao.BlogPostMapper;
 import com.qht.entity.BlogPost;
+import com.qht.entity.BlogSort;
 import com.qht.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,21 @@ public class BlogPostServiceImp implements BlogPostService {
     @Override
     public int deleteBlog(String id) {
         return blogPostMapper.deleteBlog(id);
+    }
+
+    @Override
+    public int querySort(String sortName) {
+        return blogPostMapper.querySort(sortName);
+    }
+
+    @Override
+    public int insertSort(String sortName) {
+        return blogPostMapper.insertSort(sortName);
+    }
+
+    @Override
+    public List<BlogSort> queryAllSort() {
+        return blogPostMapper.queryAllSort();
     }
 
 
