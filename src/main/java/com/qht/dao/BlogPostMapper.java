@@ -2,6 +2,7 @@ package com.qht.dao;
 
 import com.qht.entity.BlogPost;
 import com.qht.entity.BlogSort;
+import com.qht.entity.BlogTags;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -39,11 +40,17 @@ public interface BlogPostMapper {
     List<BlogPost> select();
 
     /**
-     * 查询一条
+     * 根据Id查询一条
      *
      * @return
      */
     BlogPost queryOne(String id);
+
+    /**
+     * 根据标题查询id
+     * @return
+     */
+    int queryBlogIDByTitle(String title);
 
     /**
      * 更新博客
@@ -83,4 +90,40 @@ public interface BlogPostMapper {
      * @return
      */
     List<BlogSort> queryAllSort();
+
+    /**
+     * 插入标签
+     * @param tags
+     * @return
+     */
+    int insertTags(String tags);
+
+    /**
+     * 根据标签名查询
+     * @param tags
+     * @return
+     */
+    BlogTags queryTagsByName(String tags);
+
+    /**
+     * 将博客id 和 标签 id 关系对应
+     * @param blogId
+     * @param tagId
+     * @return
+     */
+    int insertBlogTagsRelation(int blogId,int tagId);
+
+    /**
+     * 查询关系标签个数
+     * @param blogId
+     * @return
+     */
+    int queryCountTagsByBlogID(int blogId);
+
+    /**
+     * 删除指定博客ID的所有关系
+     * @param blogId
+     * @return
+     */
+    int delTags(int blogId);
 }

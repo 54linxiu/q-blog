@@ -85,7 +85,8 @@
 
 						<div class="form-group">
 							<label  for="blogTagsName" style="font-size: 2vh">标签</label>
-							<input type="text" id="blogTagsName" class="form-control" style="padding: 0;margin: 0">
+							<input type="text" th:if="${session.blog} != null" th:value="${session.blog.getBlogTagsName()}" id="blogTagsName" placeholder="如有多个,请用空格隔开" class="form-control" style="padding: 0;margin: 0">
+							<input type="text" th:if="${session.blog} == null" id="blogTagsName" placeholder="如有多个,请用空格隔开" class="form-control" style="padding: 0;margin: 0">
 						</div>
 					</form>
 					<!--md-->

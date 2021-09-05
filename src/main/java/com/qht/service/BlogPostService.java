@@ -2,6 +2,8 @@ package com.qht.service;
 
 import com.qht.entity.BlogPost;
 import com.qht.entity.BlogSort;
+import com.qht.entity.BlogTags;
+import com.qht.entity.BlogTagsRelation;
 
 import java.util.List;
 
@@ -70,4 +72,20 @@ public interface BlogPostService {
      * @return
      */
     List<BlogSort> queryAllSort();
+
+    /**
+     * 插入标签
+     * @param tags
+     * @return
+     */
+    int insertTags(String tags,String title);
+
+    /**
+     * 根据标签名查询
+     * @param tags
+     * @return
+     */
+    BlogTags queryTagsByName(String tags);
+
+
 }

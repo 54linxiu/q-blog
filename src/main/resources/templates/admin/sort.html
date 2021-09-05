@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 
-    <title>标签管理</title>
+    <title>分类管理</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
@@ -36,6 +36,17 @@
                 </div>
                 <div th:replace="~{common/common::headright}"></div>
             </div>
+            <table class="container table table-bordered">
+                <tr class="row text-center">
+                    <td class="col-md-6">分类ID</td>
+                    <td class="col-md-6">分类名称</td>
+                </tr>
+
+                <tr class="row text-center" th:each="sort : ${blogSorts}">
+                    <td class="col-md-6" th:text="${sort.getSortId()}"></td>
+                    <td class="col-md-6" th:text="${sort.getSortName()}"></td>
+                </tr>
+            </table>
         </nav>
 
         <div class="content" style="margin: 3vh 15px">

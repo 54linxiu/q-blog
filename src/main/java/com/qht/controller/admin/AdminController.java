@@ -50,7 +50,9 @@ public class AdminController {
      * @return
      */
     @GetMapping("sort")
-    public String toSort(){
+    public String toSort(Model model){
+        List<BlogSort> blogSorts = blogPostService.queryAllSort();
+        model.addAttribute("blogSorts",blogSorts);
         return "admin/sort";
     }
     @GetMapping("tags")

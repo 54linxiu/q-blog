@@ -21,9 +21,13 @@
         select * from blog_post where blog_id = #{id}
     </select>
 
+    <select id="queryBlogIDByTitle" resultType="_int">
+        select blog_id from blog_post where blog_title = #{title}
+    </select>
+
     <update id="updateBlog">
         update blog_post set blog_title = #{blogTitle}, blog_content_Html = #{blogContentHtml},
-        blog_content_md = #{blogContentMd},blog_sort_name = #{blogSortName} where blog_id = #{blogId}
+        blog_content_md = #{blogContentMd},blog_sort_name = #{blogSortName},blog_tags_name = #{blogTagsName} where blog_id = #{blogId}
     </update>
 
     <delete id="deleteBlog">
@@ -41,4 +45,24 @@
     <select id="queryAllSort" resultType="BlogSort">
         select * from blog_sort
     </select>
+
+    <insert id="insertTags">
+        insert into blog_tags(tags_name) values (#{tags})
+    </insert>
+
+    <select id="queryTagsByName" resultType="BlogTags">
+        select * from blog_tags where tags_name = #{tags}
+    </select>
+    
+    <insert id="insertBlogTagsRelation">
+        insert into blog_tags_relation(blog_id,tags_id) values (#{blogId},#{tagId})
+    </insert>
+
+    <select id="queryCountTagsByBlogID" resultType="_int">
+        select count(1) from blog_tags_relation where blog_id = #{blogId}
+    </select>
+
+    <delete id="delTags">
+        delete from blog_tags_relation where blog_id = #{blogId}
+    </delete>
 </mapper>

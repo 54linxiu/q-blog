@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,15 +90,14 @@ public class BlogController {
     public String saveBlog(BlogPost blogPost, Model model){
         System.out.println(blogPost);
         String sortName = blogPost.getBlogSortName();
-        //判断是否有分类标签 没有文字符号限制
-        if(!"".equals(sortName) && sortName.length() > 0){
-            int count = blogPostService.querySort(sortName);
-            System.out.println(count);
-            if(count == 0){
-                blogPostService.insertSort(sortName);
-            }
-        }
+        String blogTagsName = blogPost.getBlogTagsName();
+
+        //插入分类标签
+        blogPostService.insertSort(sortName);
         blogPostService.insertBlog(blogPost);
+        //插入标签
+        blogPostService.insertTags(blogTagsName,blogPost.getBlogTitle());
+
 
         Map<String,String> map = new HashMap<>();
         map.put("msg", "true");

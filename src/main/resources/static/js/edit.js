@@ -23,8 +23,8 @@ $(function () {
     $('#blogSubmit').click(function () {
         uid = $('#uid').val();
         bTitle = $('#blogName').val();
-        content = contentEditor.getHTML()
-        sort = $('#blogSortName').val()
+        content = contentEditor.getHTML();
+        sort = $('#blogSortName_sele').val();
         tags = $('#blogTagsName').val();
         if (uid == null || uid.length === 0) {
              alert("请登录");
@@ -62,10 +62,12 @@ $(function () {
                 dataType: "json",                 //返回的数据类型
                 success: function (data) {          //data就是返回的json类型的数据
                     if (data.msg == "true") {
-                        console.log("ok");
                         swal("提交成功", "请确定", "success");
-                        //上传成功 清空标题 博文
-                        console.log(sort + tags)
+                        //上传成功 清空标题 博文 标签
+                        $("#blogName").val("")
+                        //因为jquery.editable-select.js 所以改变了 id
+                        $('#blogSortName_sele').val("c")
+                        $('#blogTagsName').val("")
                         contentEditor.clear()
                     }
                 },
@@ -92,8 +94,10 @@ $(function () {
                     if (data.msg == "true") {
                         console.log("ok");
                         swal("修改成功", "请确定", "success");
-                        //上传成功 清空标题 博文
-                        console.log($("#blogName").val(""))
+                        //上传成功 清空标题 博文 标签 默认c 为默认分类
+                        $("#blogName").val("")
+                        $('#blogSortName').val("c")
+                        $('#blogTagsName').val("")
                         contentEditor.clear()
                         $("#pTitle").text("发布博客")
                     }
@@ -105,7 +109,7 @@ $(function () {
         }
     };
 
-
+    //可输入 下拉框
     $('#blogSortName').editableSelect({
         bg_iframe: true,
 
