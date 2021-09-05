@@ -26,7 +26,7 @@ CREATE TABLE `blog_post`(
  blog_id INT PRIMARY KEY AUTO_INCREMENT COMMENT "博文id",
  release_time DATE NOT NULL COMMENT "发布日期",
  publishing_users INT  COMMENT "发表用户 & 用户id",
- blog_title VARCHAR(20) NOT NULL COMMENT "博客标题",
+ blog_title VARCHAR(20) NOT NULL UNIQUE COMMENT "博客标题",
  blog_content_html MEDIUMTEXT NOT NULL COMMENT "博客内容",
  blog_content_md MEDIUMTEXT NOT NULL COMMENT "博客内容",
  blog_sort_name VARCHAR(10) COMMENT "分类名称 可选项",
@@ -55,6 +55,7 @@ CREATE TABLE `blog_tags_relation`(
 )
 
 INSERT INTO blog_sort(sort_name) VALUES ("青花瓷")
-DROP TABLE blog_tags_relation
-
+DROP TABLE blog_post
+更新数据库 ER 修改博客回显 发布博客提示分类
 TRUNCATE TABLE blog_post
+SELECT * FROM blog_post
