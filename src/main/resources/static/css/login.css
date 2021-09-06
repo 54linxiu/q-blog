@@ -1,7 +1,11 @@
+html{
+    height: 100%;
+}
 body {
     background: url('../img/bg.jpg');
     background-repeat: no-repeat;
-    background-size: 100% auto;
+    background-size: cover;
+
 }
 #login-box {
     width: 30%;

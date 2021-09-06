@@ -56,7 +56,7 @@
                     <td class="col-md-5" th:text="${blog.getBlogContentMd()}"></td>
                     <td class="col-md-1" th:text="${blog.getReplies()}"></td>
                     <td class="col-md-1"><a class="btn btn-info" th:href="@{'/blogs/edit?id='+${blog.getBlogId()}}">编辑</a></td>
-                    <td class="col-md-1"><a  class="btn btn-danger del" th:bId="${blog.getBlogId()}">删除</a></td>
+                    <td class="col-md-1"><a  class="btn btn-danger del" action="blog" th:actionId="${blog.getBlogId()}">删除</a></td>
                 </tr>
             </table>
 
@@ -66,7 +66,7 @@
 
     </div>
 </div>
-<div th:replace="~{common/common::resources1}"></div>
-<script type="text/javascript" th:src="@{/js/del.js}"></script>
+    <div th:replace="~{common/common::resources1}"></div>
+    <script type="text/javascript" th:src="@{/js/del.js}"></script>
 </body>
 </html>

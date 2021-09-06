@@ -38,13 +38,15 @@
             </div>
             <table class="container table table-bordered">
                 <tr class="row text-center">
-                    <td class="col-md-6">分类ID</td>
-                    <td class="col-md-6">分类名称</td>
+                    <td class="col-md-4">分类ID</td>
+                    <td class="col-md-4">分类名称</td>
+                    <td class="col-md-4">删除操作</td>
                 </tr>
 
                 <tr class="row text-center" th:each="sort : ${blogSorts}">
-                    <td class="col-md-6" th:text="${sort.getSortId()}"></td>
-                    <td class="col-md-6" th:text="${sort.getSortName()}"></td>
+                    <td class="col-md-4" th:text="${sort.getSortId()}"></td>
+                    <td class="col-md-4" th:text="${sort.getSortName()}"></td>
+                    <td class="col-md-4" ><a class="btn btn-danger del" action="sort" th:actionId="${sort.getSortName()}">删除</a></td>
                 </tr>
             </table>
         </nav>
@@ -62,5 +64,7 @@
 
     </div>
 </div>
+    <div th:replace="~{common/common::resources1}"></div>
+    <script type="text/javascript" th:src="@{/js/del.js}"></script>
 </body>
 </html>

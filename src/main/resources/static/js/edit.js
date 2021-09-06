@@ -69,6 +69,8 @@ $(function () {
                         $('#blogSortName_sele').val("c")
                         $('#blogTagsName').val("")
                         contentEditor.clear()
+                    }else {
+                        swal("删除失败", "请确定", "error");
                     }
                 },
                 error: function (data) {

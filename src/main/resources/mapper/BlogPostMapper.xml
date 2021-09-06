@@ -58,11 +58,36 @@
         insert into blog_tags_relation(blog_id,tags_id) values (#{blogId},#{tagId})
     </insert>
 
-    <select id="queryCountTagsByBlogID" resultType="_int">
-        select count(1) from blog_tags_relation where blog_id = #{blogId}
-    </select>
 
-    <delete id="delTags">
+
+    <delete id="relationship">
         delete from blog_tags_relation where blog_id = #{blogId}
     </delete>
+
+    <select id="sortCount" resultType="_int">
+        select count(1) from blog_sort
+    </select>
+    <select id="tagsCount" resultType="_int">
+        select count(1) from blog_tags
+    </select>
+
+    <select id="queryAllTags" resultType="BlogTags">
+        select * from blog_tags
+    </select>
+
+    <delete id="deleteSort">
+        delete from blog_sort where sort_name = #{sortName}
+    </delete>
+
+    <delete id="deleteTags">
+        delete from blog_tags where tags_id = #{blogId}
+    </delete>
+
+    <select id="queryTagsRelationCount" resultType="_int">
+        select count(1) from blog_tags_relation where tags_id = #{tagsId}
+    </select>
+
+    <select id="queryBlogCountBySort" resultType="_int">
+        select count(1) from blog_post where blog_sort_name = #{sort}
+    </select>
 </mapper>

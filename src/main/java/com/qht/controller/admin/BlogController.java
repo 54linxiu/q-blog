@@ -64,9 +64,17 @@ public class BlogController {
      */
     @PostMapping("/del")
     @ResponseBody
-    public String delBlog(String id){
-        System.out.println(id);
-        int status = blogPostService.deleteBlog(id);
+    public String delBlog(String id,String action){
+        System.out.println(id + action);
+        int status = 0;
+        //删除博客
+        if("blog".equals(action)){
+            status = blogPostService.deleteBlog(id);
+        }else if ("sort".equals(action)){ //删除分类
+            status = blogPostService.deleteSort(id);
+        }else if("tags".equals(action)){ //删除标签
+            status = blogPostService.deleteTags(id);
+        }
         Map<String,String> map = new HashMap<>();
         String msg = "";
         if(status > 0){

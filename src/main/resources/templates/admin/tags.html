@@ -36,6 +36,20 @@
                 </div>
                 <div th:replace="~{common/common::headright}"></div>
             </div>
+
+            <table class="container table table-bordered">
+                <tr class="row text-center">
+                    <td class="col-md-4">标签ID</td>
+                    <td class="col-md-4">标签名称</td>
+                    <td class="col-md-4">删除操作</td>
+                </tr>
+
+                <tr class="row text-center" th:each="tags : ${blogTags}">
+                    <td class="col-md-4" th:text="${tags.getTagsId()}"></td>
+                    <td class="col-md-4" th:text="${tags.getTagsName()}"></td>
+                    <td class="col-md-4"><a  class="btn btn-danger del" action="tags" th:actionId="${tags.getTagsId()}">删除</a></td>
+                </tr>
+            </table>
         </nav>
 
         <div class="content" style="margin: 3vh 15px">
@@ -51,5 +65,7 @@
 
     </div>
 </div>
+<div th:replace="~{common/common::resources1}"></div>
+<script type="text/javascript" th:src="@{/js/del.js}"></script>
 </body>
 </html>

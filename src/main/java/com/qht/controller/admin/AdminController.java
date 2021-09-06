@@ -2,6 +2,7 @@ package com.qht.controller.admin;
 
 import com.alibaba.fastjson.JSON;
 import com.qht.entity.BlogSort;
+import com.qht.entity.BlogTags;
 import com.qht.entity.UserAdmin;
 import com.qht.service.BlogPostService;
 import com.qht.service.UserAdminService;
@@ -55,8 +56,11 @@ public class AdminController {
         model.addAttribute("blogSorts",blogSorts);
         return "admin/sort";
     }
+
     @GetMapping("tags")
-    public String toTags(){
+    public String toTags(Model model){
+        List<BlogTags> blogTags = blogPostService.queryAllTags();
+        model.addAttribute("blogTags",blogTags);
         return "admin/tags";
     }
 
@@ -105,6 +109,8 @@ public class AdminController {
     @GetMapping("/index")
     public String index(Model model){
         model.addAttribute("blogCount", blogPostService.queryCount());
+        model.addAttribute("sortCount", blogPostService.sortCount());
+        model.addAttribute("tagsCount", blogPostService.tagsCount());
         return "index";
     }
 

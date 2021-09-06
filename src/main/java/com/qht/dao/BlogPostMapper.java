@@ -92,6 +92,13 @@ public interface BlogPostMapper {
     List<BlogSort> queryAllSort();
 
     /**
+     * 查询所有标签
+     *
+     * @return
+     */
+    List<BlogTags> queryAllTags();
+
+    /**
      * 插入标签
      * @param tags
      * @return
@@ -113,17 +120,50 @@ public interface BlogPostMapper {
      */
     int insertBlogTagsRelation(int blogId,int tagId);
 
-    /**
-     * 查询关系标签个数
-     * @param blogId
-     * @return
-     */
-    int queryCountTagsByBlogID(int blogId);
 
     /**
      * 删除指定博客ID的所有关系
      * @param blogId
      * @return
      */
-    int delTags(int blogId);
+    int delTagsRelationship(int blogId);
+
+    /**
+     * 分类数量
+     * @return
+     */
+    int sortCount();
+
+    /**
+     * 标签数量
+     * @return
+     */
+    int tagsCount();
+
+    /**
+     * 删除分类
+     * @param blogId
+     * @return
+     */
+    int deleteSort(String sortName);
+
+    /**
+     * 删除标签
+     * @return
+     */
+    int deleteTags(String blogId);
+
+    /**
+     * 查询博客与标签之前关系数量
+     * @param tagsId
+     * @return
+     */
+    int queryTagsRelationCount(String tagsId);
+
+    /**
+     * 查询 此分类的博客数量
+     * @param sort
+     * @return
+     */
+    int queryBlogCountBySort(String sort);
 }

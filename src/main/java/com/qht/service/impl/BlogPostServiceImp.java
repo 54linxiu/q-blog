@@ -8,7 +8,6 @@ import com.qht.service.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -55,7 +54,7 @@ public class BlogPostServiceImp implements BlogPostService {
         String blogTagsName[] = tags.split("\\s+"); //标签分解
         BlogTags blogTags;
         //删除所有关系 嘿嘿
-        blogPostMapper.delTags(blogPost.getBlogId());
+        blogPostMapper.delTagsRelationship(blogPost.getBlogId());
 
         if(!"".equals(tags) && tags.length() > 0){
 
@@ -102,6 +101,11 @@ public class BlogPostServiceImp implements BlogPostService {
     }
 
     @Override
+    public List<BlogTags> queryAllTags() {
+        return blogPostMapper.queryAllTags();
+    }
+
+    @Override
     public int insertTags(String tags,String title) {
         String blogTagsName[] = tags.split("\\s+"); //标签分解
         BlogTags blogTags;
@@ -127,6 +131,35 @@ public class BlogPostServiceImp implements BlogPostService {
     @Override
     public BlogTags queryTagsByName(String tags) {
         return blogPostMapper.queryTagsByName(tags);
+    }
+
+    @Override
+    public int sortCount() {
+        return blogPostMapper.sortCount();
+    }
+
+    @Override
+    public int tagsCount() {
+        return blogPostMapper.tagsCount();
+    }
+
+    @Override
+    public int deleteSort(String sortName) {
+        //删除分类 需要判断 相关博客 存不存在
+        if (blogPostMapper.queryBlogCountBySort(sortName) == 0){
+            return blogPostMapper.deleteSort(sortName);
+        }
+        return 0;
+    }
+
+    @Override
+    public int deleteTags(String tagsId) {
+        //删除标签 需要判断 相关博客存不存在
+        if (blogPostMapper.queryTagsRelationCount(tagsId) > 0){
+            return 0;
+        }else{
+            return blogPostMapper.deleteTags(tagsId);
+        }
     }
 
 

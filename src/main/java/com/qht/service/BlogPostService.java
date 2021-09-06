@@ -74,6 +74,12 @@ public interface BlogPostService {
     List<BlogSort> queryAllSort();
 
     /**
+     * 查询所有标签
+     * @return
+     */
+    List<BlogTags> queryAllTags();
+
+    /**
      * 插入标签
      * @param tags
      * @return
@@ -86,6 +92,31 @@ public interface BlogPostService {
      * @return
      */
     BlogTags queryTagsByName(String tags);
+
+    /**
+     * 统计分类数量
+     * @return
+     */
+    int sortCount();
+
+    /**
+     * 统计标签数量
+     * @return
+     */
+    int tagsCount();
+
+    /**
+     * 删除分类
+     * @param sortName
+     * @return
+     */
+    int deleteSort(String sortName);
+
+    /**
+     * 删除标签
+     * @return
+     */
+    int deleteTags(String tagsId);
 
 
 }

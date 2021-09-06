@@ -7,13 +7,16 @@ $(function () {
                 type: "POST",                      //请求类型
                 url: "/blogs/del",           //URL
                 data: {
-                    id : a.attr("bId")
+                    id : a.attr("actionId"),
+                    action : a.attr("action")
                 },   //传递的参数
                 dataType: "json",                 //返回的数据类型
                 success: function (data) {          //data就是返回的json类型的数据
                     if (data.msg == "true") {
                         swal("删除成功", "请确定", "success");
-                        console.log(a.parents("tr").remove())
+                        a.parents("tr").remove()
+                    }else {
+                        swal("删除失败", "请确定", "error");
                     }
                 },
                 error: function (data) {
