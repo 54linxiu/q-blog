@@ -40,5 +40,19 @@ public class UserAdminServiceImpl implements UserAdminService {
         return userAdminMapper.queryUser(account);
     }
 
+    @Override
+    public int update(UserAdmin userAdmin) {
+        if(userAdmin.getUserAccount() != null && userAdmin.getUserId() != 0){
+
+            return userAdminMapper.update(userAdmin);
+        }
+        return 0;
+    }
+
+    @Override
+    public void savaPhoto(String filename,String userId) {
+        userAdminMapper.savaPhoto(filename,userId);
+    }
+
 
 }

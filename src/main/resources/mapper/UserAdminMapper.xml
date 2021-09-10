@@ -22,4 +22,12 @@
         from user_admin
         where user_account = #{account}
     </select>
+
+    <update id="update" parameterType="UserAdmin">
+        update user_admin set user_account = #{userAccount},user_nickname = #{userNickName} where user_id = #{userId}
+    </update>
+
+    <update id="savaPhoto" parameterType="String">
+        update user_admin set user_profile = #{filename} where user_id = #{userId}
+    </update>
 </mapper>

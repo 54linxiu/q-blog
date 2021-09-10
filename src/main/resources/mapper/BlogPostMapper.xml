@@ -83,8 +83,12 @@
         delete from blog_tags where tags_id = #{blogId}
     </delete>
 
+    <delete id="delTagsRelationship" parameterType="_int">
+        delete from blog_tags_relation where blog_id = #{blogId}
+    </delete>
+
     <select id="queryTagsRelationCount" resultType="_int">
-        select count(1) from blog_tags_relation where tags_id = #{tagsId}
+        SELECT COUNT(1) FROM blog_post WHERE blog_id = (SELECT blog_id FROM blog_tags_relation WHERE tags_id = #{tagsId})
     </select>
 
     <select id="queryBlogCountBySort" resultType="_int">

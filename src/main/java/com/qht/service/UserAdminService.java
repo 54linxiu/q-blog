@@ -10,4 +10,17 @@ public interface UserAdminService {
     UserAdmin login(String account,String password);
 
     UserAdmin queryUser(String account);
+
+    /**
+     * 修改用户
+     * @param userAdmin
+     * @return
+     */
+    int update(UserAdmin userAdmin);
+
+    /**
+     * 保存头像
+     * @param filename
+     */
+    void savaPhoto(String filename,String userId);
 }

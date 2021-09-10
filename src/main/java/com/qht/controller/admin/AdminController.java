@@ -12,14 +12,16 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -121,6 +123,76 @@ public class AdminController {
     @GetMapping("/login")
     public String login(){
         return "admin/login";
+    }
+
+    /**
+     * 修改用户信息
+     * @param userAdmin
+     * @return
+     */
+    @PostMapping("updateUser")
+    @ResponseBody
+    public String updateUser(UserAdmin userAdmin, HttpSession session){
+
+        int status = userAdminService.update(userAdmin);
+
+        Map<String,String> map = new HashMap<>();
+        String msg = "";
+        if(status > 0){
+            map.put("msg", "true");
+            msg   = JSON.toJSONString(map);
+        }else if(status == 0){
+            map.put("msg", "false");
+            msg   = JSON.toJSONString(map);
+        }
+        return msg;
+    }
+
+    @RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, String> uploadPhoto(MultipartFile photo,HttpServletRequest request){
+        Map<String, String> ret = new HashMap<String, String>();
+        if (photo == null) {
+            ret.put("type", "error");
+            ret.put("msg", "选择要上传的文件！");
+            return ret;
+        }
+
+        //获取文件后缀
+        String suffix = photo.getOriginalFilename().substring(photo.getOriginalFilename().lastIndexOf(".") + 1, photo.getOriginalFilename().length());
+        if (!"jpg,jpeg,gif,png".toUpperCase().contains(suffix.toUpperCase())) {
+            ret.put("type", "error");
+            ret.put("msg", "请选择jpg,jpeg,gif,png格式的图片！");
+            return ret;
+        }
+        //获取项目根目录加上图片目录 webapp/static/imgages/upload/
+        String savePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\img\\faces\\";
+        File savePathFile = new File(savePath);
+        if (!savePathFile.exists()) {
+            //若不存在该目录，则创建目录
+            savePathFile.mkdir();
+        }
+        String filename = new Date().getTime() + "." + suffix;
+        try {
+            //将文件保存指定目录
+            photo.transferTo(new File(savePath + filename));
+        } catch (Exception e) {
+            ret.put("type", "error");
+            ret.put("msg", "保存文件异常！");
+            e.printStackTrace();
+            return ret;
+        }
+        ret.put("type", "success");
+        ret.put("msg", "上传图片成功！");
+        ret.put("filepath", request.getSession().getServletContext().getContextPath() + "/img/faces/");
+        ret.put("filename", filename);
+        //获取session中的用户对象
+        UserAdmin uid = (UserAdmin) request.getSession().getAttribute("uid");
+        //修改数据库中的图片路径
+        userAdminService.savaPhoto(filename,String.valueOf(uid.getUserId()));
+        //更新图片路径
+        request.getSession().setAttribute("uid", userAdminService.queryUser(uid.getUserAccount()));
+        return ret;
     }
 
     /**

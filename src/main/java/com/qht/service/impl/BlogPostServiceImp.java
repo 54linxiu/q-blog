@@ -155,11 +155,13 @@ public class BlogPostServiceImp implements BlogPostService {
     @Override
     public int deleteTags(String tagsId) {
         //删除标签 需要判断 相关博客存不存在
-        if (blogPostMapper.queryTagsRelationCount(tagsId) > 0){
-            return 0;
-        }else{
+        int i = blogPostMapper.queryTagsRelationCount(tagsId);
+
+        if (i == 0){
             return blogPostMapper.deleteTags(tagsId);
         }
+        return 0;
+
     }
 
 

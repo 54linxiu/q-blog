@@ -142,7 +142,7 @@ public interface BlogPostMapper {
 
     /**
      * 删除分类
-     * @param blogId
+     * @param sortName
      * @return
      */
     int deleteSort(String sortName);
