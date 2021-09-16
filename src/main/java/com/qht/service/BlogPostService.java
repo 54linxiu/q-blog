@@ -119,4 +119,5 @@ public interface BlogPostService {
     int deleteTags(String tagsId);
 
 
+    List<BlogPost> querySort(int start, int size);
 }

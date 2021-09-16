@@ -164,5 +164,10 @@ public class BlogPostServiceImp implements BlogPostService {
 
     }
 
+    @Override
+    public List<BlogPost> querySort(int start, int size) {
+        return blogPostMapper.queryBlogPage(start,size);
+    }
+
 
 }

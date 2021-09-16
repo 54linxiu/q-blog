@@ -1,9 +1,7 @@
 package com.qht.controller.admin;
 
 import com.alibaba.fastjson.JSON;
-import com.qht.entity.BlogSort;
-import com.qht.entity.BlogTags;
-import com.qht.entity.UserAdmin;
+import com.qht.entity.*;
 import com.qht.service.BlogPostService;
 import com.qht.service.UserAdminService;
 import org.apache.shiro.SecurityUtils;
@@ -39,6 +37,7 @@ public class AdminController {
 
     private UserAdminService userAdminService;
     private BlogPostService blogPostService;
+    private BackstagePage<BlogPost> page;
     @Autowired
     public void setUserAdminService(UserAdminService userAdminService) {
         this.userAdminService = userAdminService;
@@ -46,6 +45,10 @@ public class AdminController {
     @Autowired
     public void setBlogPostService(BlogPostService blogPostService) {
         this.blogPostService = blogPostService;
+    }
+    @Autowired
+    public void setPage(BackstagePage<BlogPost> page) {
+        this.page = page;
     }
 
     /**
@@ -71,9 +74,15 @@ public class AdminController {
      * @return
      */
     @GetMapping("/manage")
-    public String toManage(Model model){
+    public String toManage(@RequestParam(value = "pageNum",required = false,defaultValue = "1")int pageNum,Model model,HttpSession session){
 //        blogPostService.select()
-        model.addAttribute("blogInfo", blogPostService.select());
+
+        List<BlogPost> blogPosts = blogPostService.querySort((pageNum-1)*10, 10);
+
+        page.setRows(blogPosts);
+        page.setCurrentPage(pageNum);
+        page.setTotalCount(blogPostService.queryCount());
+        model.addAttribute("blogInfo", page);
         return "admin/administration";
     }
 
@@ -91,7 +100,7 @@ public class AdminController {
     }
 
     @GetMapping("/modify")
-    public String modify(){
+    public String modify(HttpSession session){
         return "admin/edit";
     }
 

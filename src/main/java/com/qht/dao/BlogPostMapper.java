@@ -166,4 +166,6 @@ public interface BlogPostMapper {
      * @return
      */
     int queryBlogCountBySort(String sort);
+
+    List<BlogPost> queryBlogPage(int start, int size);
 }

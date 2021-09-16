@@ -94,4 +94,7 @@
     <select id="queryBlogCountBySort" resultType="_int">
         select count(1) from blog_post where blog_sort_name = #{sort}
     </select>
+    <select id="queryBlogPage" resultType="BlogPost">
+        SELECT * FROM blog_post LIMIT #{start},#{size}
+    </select>
 </mapper>
