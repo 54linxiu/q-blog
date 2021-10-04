@@ -43,7 +43,8 @@ public class UserRealm extends AuthorizingRealm {
 
 
         //设置当前用户的权限
-        info.addStringPermission("perms:"+currentUser.getLocked());
+        info.addStringPermission("perms:"+ currentUser.getLocked());
+        info.addStringPermission("edit:"+ (currentUser.getLocked()<=1));
 
         return info;
     }

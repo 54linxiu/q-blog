@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.qht.entity.BlogPost;
 import com.qht.entity.BlogSort;
 import com.qht.service.BlogPostService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,13 +23,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @ClassName BlogController
+ * @ClassName VueController
  * @Author q
  * @Date 2021/6/20 22:30
  * @Version 1.0
  */
 @Controller
 @RequestMapping("/blogs")
+@Api(tags = "博客控制器")
 public class BlogController {
 
     private BlogPostService blogPostService;
@@ -44,6 +47,7 @@ public class BlogController {
      * @return
      */
     @GetMapping("/edit")
+    @ApiOperation("编辑接口")
     public String editBlog(String id, HttpSession session){
         BlogPost blog = blogPostService.queryOne(id);
         List<BlogSort> sortAll = blogPostService.queryAllSort();
@@ -61,6 +65,7 @@ public class BlogController {
      */
     @PostMapping("/del")
     @ResponseBody
+    @ApiOperation("删除接口")
     public String delBlog(String id,String action){
         System.out.println(id + action);
         int status = 0;
@@ -92,6 +97,7 @@ public class BlogController {
      */
     @PostMapping("/save")
     @ResponseBody
+    @ApiOperation("提交博客保存接口")
     public String saveBlog(BlogPost blogPost, Model model){
         System.out.println(blogPost);
         String sortName = blogPost.getBlogSortName();
@@ -119,6 +125,7 @@ public class BlogController {
      */
     @PostMapping("/modify")
     @ResponseBody
+    @ApiOperation("修改博客接口")
     public String modifyBlog(BlogPost blogPost, Model model,HttpSession session){
         System.out.println(blogPost);
         blogPostService.updateBlog(blogPost);
@@ -141,6 +148,7 @@ public class BlogController {
      */
     @PostMapping("/saveImg")
     @ResponseBody
+    @ApiOperation("保存图片接口")
     public JSONObject saveImg(HttpServletRequest request, HttpServletResponse response, @RequestParam("editormd-image-file") MultipartFile attach){
         JSONObject jsonObject=new JSONObject();
         try {

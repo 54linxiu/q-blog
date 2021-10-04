@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qht.dao.VueMapper">
+    <select id="selectIndex" resultType="BlogPost">
+        select blog_id,blog_title,left(blog_content_html,50),release_time from blog_post
+    </select>
+</mapper>

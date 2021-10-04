@@ -1,31 +1,37 @@
-html{
+html {
     height: 100%;
 }
+
 body {
     background: url('../img/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 
 }
+
 #login-box {
     width: 30%;
     height: auto;
-    margin: 0 auto; 
+    margin: 0 auto;
     margin-top: 15%;
     text-align: center;
     background: #00000090;
     padding: 20px 50px;
 }
+
 #login-box h1 {
     color: #fff;
 }
+
 #login-box .form .item {
-    margin-top:15px;
+    margin-top: 15px;
 }
+
 #login-box .form .item i {
     font-size: 18px;
     color: #fff;
 }
+
 #login-box .form .item input {
     width: 180px;
     font-size: 18px;
@@ -35,6 +41,7 @@ body {
     background: #ffffff00;
     color: #fff;
 }
+
 #login-box button {
     margin-top: 15px;
     width: 180px;
@@ -46,4 +53,7 @@ body {
     border: 0;
     border-radius: 15px;
 }
+
+
+
 
